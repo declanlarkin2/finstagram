@@ -1,0 +1,54 @@
+/* Updated Pokemon-themed login form styles */
+
+.pokemon-login-card {
+  width: 350px;
+  margin: 0 auto;
+  background-color: #ffffff; /* White background */
+  border: 1px solid #3b5998; /* Darker blue border */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.pokemon-login-header {
+  text-align: center;
+  background-color: #4267b2; /* Dark blue header */
+  color: #ffffff; /* White text */
+  padding: 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.pokemon-login-body {
+  padding: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #3b5998; /* Darker blue border */
+  border-radius: 4px;
+}
+
+.is-invalid {
+  border-color: #dc3545; /* Red border color for invalid fields */
+}
+
+.invalid-feedback {
+  color: #dc3545; /* Red color for error messages */
+  font-size: 12px;
+}
+
+.btn-primary {
+  background-color: #4267b2; /* Dark blue button */
+  border-color: #4267b2;
+  color: #ffffff; /* White text */
+}
+
+.btn-link {
+  color: #4267b2; /* Red for register link */
+}

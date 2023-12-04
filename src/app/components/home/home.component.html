@@ -1,0 +1,66 @@
+<div class="pokedex-background">
+  <div class="p-4">
+    <div class="container text-center">
+      <h2>Add Image</h2>
+      <form [formGroup]="imageForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="imageUpload" class="form-label">Select Image:</label>
+          <input
+            type="file"
+            class="form-control"
+            id="imageUpload"
+            name="imageUpload"
+            formControlName="File"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="fileName" class="form-label">File Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fileName"
+            name="fileName"
+            formControlName="fileName"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="username" class="form-label">Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            formControlName="username"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="userId" class="form-label">User Id:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="userId"
+            name="userId"
+            formControlName="userId"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="caption" class="form-label">Caption:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="caption"
+            name="caption"
+            formControlName="caption"
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="imageForm.invalid"
+        >
+          Upload Image
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

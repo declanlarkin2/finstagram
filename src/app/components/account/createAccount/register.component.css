@@ -1,0 +1,54 @@
+/* Pokemon-themed form styles */
+
+.pokemon-card {
+  width: 350px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 0.5px solid #000000; /* Bulbasaur Green border */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.pokemon-card-header {
+  text-align: center;
+  background-color: #ffcb05; /* Pikachu Yellow background */
+  color: #000; /* Black text */
+  padding: 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.pokemon-card-body {
+  padding: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd; /* Light gray border */
+  border-radius: 4px;
+}
+
+.is-invalid {
+  border-color: #dc3545; /* Red border color for invalid fields */
+}
+
+.invalid-feedback {
+  color: #dc3545; /* Red color for error messages */
+  font-size: 12px;
+}
+
+.btn-primary {
+  background-color: #ffcb05; /* Pikachu Yellow */
+  border-color: #ffcb05;
+  color: #000; /* Black text */
+}
+
+.btn-link {
+  color: #000000; /* Bulbasaur Green */
+}

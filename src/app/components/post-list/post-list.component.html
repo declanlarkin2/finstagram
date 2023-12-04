@@ -1,0 +1,26 @@
+<div class="row row-cols-1 row-cols-md-1 g-5">
+  <div *ngFor="let post of posts">
+    <div class="col">
+      <div class="card" [style.width.rem]="24" [style.--bs-card-bg]="'#D3D3D3'">
+        <div class="bg-image hover-overlay" mdbRipple rippleColor="light">
+          <img [src]="getImageUrl(post)" class="img-fluid" alt="Image" />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ post.username }}'s Post</h5>
+          <p class="card-text">{{ post.caption }}</p>
+          <br />
+          <!-- <div *ngIf="addPokemonToDeck">
+            <a class="btn --bs-btn-color" (click)="addToDeck(pokemon._id)"
+              >Add to deck</a
+            >
+          </div>
+          <div *ngIf="removePokemonFromDeck">
+            <a class="btn --bs-btn-color" (click)="removeFromDeck(pokemon._id)"
+              >Remove from deck</a
+            >
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
