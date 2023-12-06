@@ -21,6 +21,10 @@
       href="https://fonts.googleapis.com/icon?familly=Material_Icons"
       rel="stylesheet"
     />
+    <script>
+      // Required by some npm packages
+      window.process = { browser: true, env: { ENVIRONMENT: "BROWSER" } };
+    </script>
   </head>
   <body>
     <app-root></app-root>
