@@ -4,29 +4,36 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ImageService } from 'src/app/services/image.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { decode } from 'jsonwebtoken';
-import { Router } from '@angular/router';
 
 @Component({
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'post-image',
+  templateUrl: './postImage.component.html',
+  styleUrls: ['./postImage.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class PostImageComponent implements OnInit {
   imageForm!: FormGroup;
   previewUrl: string | ArrayBuffer | null = null;
   userDetails: any;
   @ViewChild('closebutton') closebutton: any;
+  user_posts: any[];
 
   constructor(
     private formBuilder: FormBuilder,
     private imageService: ImageService,
-    private alertService: AlertService,
-    private router: Router
+    private alertService: AlertService
   ) {}
 
   ngOnInit() {
     this.imageForm = this.formBuilder.group({
       File: [null, Validators.required],
       caption: ['', Validators.required],
+    });
+    this.showAllImages();
+  }
+
+  showAllImages() {
+    this.imageService.getImages().subscribe((images: any) => {
+      this.user_posts = images.reverse();
     });
   }
 
@@ -74,11 +81,10 @@ export class HomeComponent implements OnInit {
     this.imageService.addImage(formData).subscribe({
       next: () => {
         this.alertService.success('Image uploaded', {
-          keepAfterRouteChange: true,
+          keepAfterRouteChange: false,
           autoClose: true,
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        this.router.navigate(['/feed']);
       },
       error: (error) => {
         this.handleError(error);

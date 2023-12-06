@@ -1,0 +1,39 @@
+/* Additional CSS for a refined look */
+.card {
+  border: none;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: 300px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.card-footer {
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  border-top: 1px solid #ccc;
+  border-radius: 0 0 10px 10px;
+}
