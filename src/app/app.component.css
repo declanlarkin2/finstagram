@@ -1,4 +1,20 @@
-.navbar-btn {
-  padding-right: 15px;
-  color: white;
+.navbar {
+  background-color: #333; /* Change the color here */
+  padding: 10px 0; /* Adjust padding as needed */
+}
+
+.navbar-brand {
+  color: #fff; /* Navbar brand text color */
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  color: #fff; /* Navbar links text color */
+  margin: 0 15px;
+  font-size: 1.2rem;
+}
+
+.nav-link:hover {
+  color: #ff6347; /* Change link color on hover */
 }

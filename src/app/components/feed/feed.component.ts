@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ImageService } from '../../services/image.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ImageService } from '../../services/image.service';
   styleUrls: ['./feed.component.css'],
 })
 export class FeedComponent implements OnInit {
-  user_posts: any = [];
+  @Input() user_posts: any = [];
 
   constructor(private imageService: ImageService) {}
 

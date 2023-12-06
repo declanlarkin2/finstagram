@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ImageService } from 'src/app/services/image.service';
@@ -14,19 +14,26 @@ export class PostImageComponent implements OnInit {
   imageForm!: FormGroup;
   previewUrl: string | ArrayBuffer | null = null;
   userDetails: any;
-  // uploading: boolean = false;
+  @ViewChild('closebutton') closebutton: any;
+  user_posts: any[];
 
   constructor(
     private formBuilder: FormBuilder,
     private imageService: ImageService,
     private alertService: AlertService
-  ) // private modalService: NgbModal
-  {}
+  ) {}
 
   ngOnInit() {
     this.imageForm = this.formBuilder.group({
       File: [null, Validators.required],
       caption: ['', Validators.required],
+    });
+    this.showAllImages();
+  }
+
+  showAllImages() {
+    this.imageService.getImages().subscribe((images: any) => {
+      this.user_posts = images.reverse();
     });
   }
 
@@ -46,11 +53,7 @@ export class PostImageComponent implements OnInit {
     if (this.imageForm.invalid) {
       return;
     }
-    // this.uploading = true;
-
-    // setTimeout(() => {
-    //   this.uploadImage(formData);
-    // }, 2000);
+    this.closebutton.nativeElement.click();
 
     const formData = new FormData();
     const fileInput = (
@@ -71,15 +74,12 @@ export class PostImageComponent implements OnInit {
     formData.append('username', this.userDetails.user);
     formData.append('userId', this.userDetails.user_id);
     formData.append('caption', this.imageForm.get('caption')!.value);
-    console.log(formData);
     this.uploadImage(formData);
   }
 
   uploadImage(formData: FormData) {
-    // this.modalService.dismissAll();
     this.imageService.addImage(formData).subscribe({
       next: () => {
-        // this.uploading = false;
         this.alertService.success('Image uploaded', {
           keepAfterRouteChange: false,
           autoClose: true,
@@ -87,7 +87,6 @@ export class PostImageComponent implements OnInit {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       },
       error: (error) => {
-        // this.uploading = false;
         this.handleError(error);
       },
     });

@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand navbar-dark" style="background-color: #ef5350">
+<nav class="navbar navbar-expand navbar-dark">
   <a class="navbar-brand" href="/">
-    <img src="../assets/images/pokeball.png" alt="Your Logo" height="40" />
+    <img src="../assets/images/pokeball.webp" alt="Your Logo" height="40" />
   </a>
 
   <div class="mx-auto">
@@ -12,14 +12,19 @@
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          For You
+          Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/feed" routerLinkActive="active">
+          Feed
         </a>
       </li>
     </ul>
   </div>
-  <!-- <button *ngIf="user" class="nav-link navbar-btn" (click)="logout()">
+  <button *ngIf="user" class="nav-link navbar-btn" (click)="logout()">
     Logout
-  </button> -->
+  </button>
 </nav>
 
 <div class="app-container" [ngClass]="{ 'bg-light': user }">
