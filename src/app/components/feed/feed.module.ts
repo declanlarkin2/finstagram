@@ -5,15 +5,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { LayoutComponent } from './layout/layout.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { PostListModule } from '../post-list/post-list.module';
+// import { UsersFeedModule } from '../usersFeed/usersFeed.module';
 import { FeedComponent } from './feed.component';
+import { PostImageModule } from '../postImage/postImage.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FeedRoutingModule,
     ReactiveFormsModule,
-    PostListModule,
+    // UsersFeedModule,
+    PostImageModule,
   ],
   declarations: [FeedComponent, LayoutComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

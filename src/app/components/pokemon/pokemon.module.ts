@@ -7,7 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PokedexComponent } from './pokedex/pokedex.component';
 import { LayoutComponent } from './layout/layout.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { PostListModule } from '../post-list/post-list.module';
 
 @NgModule({
   imports: [
@@ -15,7 +14,6 @@ import { PostListModule } from '../post-list/post-list.module';
     PokemonRoutingModule,
     MatPaginatorModule,
     ReactiveFormsModule,
-    PostListModule,
   ],
   declarations: [PokedexComponent, LayoutComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

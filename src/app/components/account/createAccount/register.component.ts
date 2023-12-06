@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import * as bcrypt from 'bcryptjs';
 
 import { AlertService } from '../../../services/alert.service';
 import { AccountService } from '../../..//services/account.service';
-import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
   templateUrl: 'register.component.html',
@@ -15,14 +14,14 @@ export class RegisterComponent implements OnInit {
   form!: FormGroup;
   loading = false;
   submitted = false;
+  hashedPassword: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
-    private alertService: AlertService,
-    private pokemonService: PokemonService
+    private alertService: AlertService
   ) {}
 
   ngOnInit() {
@@ -38,32 +37,43 @@ export class RegisterComponent implements OnInit {
     return this.form.controls;
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.submitted = true;
-
-    // reset alerts on submit
     this.alertService.clear();
 
-    // stop here if form is invalid
     if (this.form.invalid) {
       return;
     }
 
+    const password = this.form.get('password')!.value;
+    const confirmPassword = this.form.get('confirmPassword')!.value;
+
+    if (password !== confirmPassword) {
+      // Passwords don't match, set error and return
+      this.form.get('confirmPassword')!.setErrors({ passwordMismatch: true });
+      this.alertService.error('Passwords do not match');
+      return;
+    }
+
+    this.hashedPassword = await bcrypt.hashSync(this.f.password.value, 10);
+    // Construct FormData and register user
+    const formData = new FormData();
+    formData.append('username', this.f.username.value);
+    formData.append('password', this.hashedPassword);
+    formData.append('confirmPassword', this.f.confirmPassword.value);
+
     this.loading = true;
-    this.accountService
-      .registerUser(this.form.value)
-      .pipe(first())
-      .subscribe({
-        next: () => {
-          this.alertService.success('Registration successful', {
-            keepAfterRouteChange: true,
-          });
-          this.router.navigate(['../login'], { relativeTo: this.route });
-        },
-        error: (error) => {
-          this.alertService.error(error);
-          this.loading = false;
-        },
-      });
+    this.accountService.registerUser(formData).subscribe({
+      next: () => {
+        this.alertService.success('Registration successful', {
+          keepAfterRouteChange: true,
+        });
+        this.router.navigate(['../login'], { relativeTo: this.route });
+      },
+      error: (error) => {
+        this.alertService.error(error);
+        this.loading = false;
+      },
+    });
   }
 }

@@ -12,19 +12,25 @@
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          Home
+          For You
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/feed" routerLinkActive="active">
-          Feed
-        </a>
+        <button
+          *ngIf="user"
+          type="button"
+          class="nav-link navbar-btn"
+          data-bs-toggle="modal"
+          data-bs-target="#uploadModal"
+        >
+          Post
+        </button>
       </li>
     </ul>
   </div>
-  <button *ngIf="user" class="nav-link navbar-btn" (click)="logout()">
+  <!-- <button *ngIf="user" class="nav-link navbar-btn" (click)="logout()">
     Logout
-  </button>
+  </button> -->
 </nav>
 
 <div class="app-container" [ngClass]="{ 'bg-light': user }">

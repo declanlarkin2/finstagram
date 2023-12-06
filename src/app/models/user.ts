@@ -5,3 +5,9 @@ export class User {
   confirmPassword?: string;
   token?: string;
 }
+
+export class UserDetails {
+  username: string;
+  password: string;
+  confirmPassword?: string;
+}

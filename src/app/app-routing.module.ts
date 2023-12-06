@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './components/home/home.component';
+import { PostImageComponent } from './components/postImage/postImage.component';
 import { AuthGuard } from './helpers/auth.guard';
 
 const accountModule = () =>
@@ -12,10 +12,8 @@ const pokemonModule = () =>
 const feedModule = () =>
   import('./components/feed/feed.module').then((x) => x.FeedModule);
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'account', loadChildren: accountModule },
-  { path: 'pokemon', loadChildren: pokemonModule, canActivate: [AuthGuard] },
-  { path: 'feed', loadChildren: feedModule, canActivate: [AuthGuard] },
+  { path: '', loadChildren: feedModule, canActivate: [AuthGuard] },
+  // { path: 'feed', loadChildren: feedModule, canActivate: [AuthGuard] },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' },

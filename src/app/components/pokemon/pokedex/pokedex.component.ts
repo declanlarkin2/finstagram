@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PokemonService } from '../../../services/pokemon.service';
 
 import { PageEvent } from '@angular/material/paginator';
 import { AlertService } from '../../../services/alert.service';
@@ -29,22 +28,19 @@ export class PokedexComponent implements OnInit {
 
   showDropDown: boolean = false;
 
-  constructor(
-    public pokemonService: PokemonService,
-    private alertService: AlertService
-  ) {}
+  constructor(private alertService: AlertService) {}
 
-  showAllPokemon() {
-    this.pokemonService
-      .getPokemonWithPagnation(this.page, this.itemsPerPage)
-      .subscribe((pokemonList: any) => {
-        this.pokemonList = pokemonList;
-      });
+  // showAllPokemon() {
+  //   this.pokemonService
+  //     .getPokemonWithPagnation(this.page, this.itemsPerPage)
+  //     .subscribe((pokemonList: any) => {
+  //       this.pokemonList = pokemonList;
+  //     });
 
-    this.pokemonService.getNumberOfPokemon().subscribe((totalPokemon: any) => {
-      this.count = totalPokemon.total_count;
-    });
-  }
+  //   this.pokemonService.getNumberOfPokemon().subscribe((totalPokemon: any) => {
+  //     this.count = totalPokemon.total_count;
+  //   });
+  // }
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -54,6 +50,6 @@ export class PokedexComponent implements OnInit {
     if (sessionStorage['page']) {
       this.page = Number(sessionStorage['page']);
     }
-    this.showAllPokemon();
+    // this.showAllPokemon();
   }
 }

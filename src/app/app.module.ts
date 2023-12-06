@@ -13,7 +13,6 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './components/alert/alert.component';
-import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   imports: [
@@ -26,7 +25,7 @@ import { HomeComponent } from './components/home/home.component';
     MdbRippleModule,
     CommonModule,
   ],
-  declarations: [AppComponent, AlertComponent, HomeComponent],
+  declarations: [AppComponent, AlertComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
