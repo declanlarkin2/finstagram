@@ -15,9 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "18.13.0"
       - uses: actions/checkout@v3
         with:
           submodules: true
