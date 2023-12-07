@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import axios, { AxiosRequestConfig } from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { BehaviorSubject } from 'rxjs';
-import { environment } from 'src/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
