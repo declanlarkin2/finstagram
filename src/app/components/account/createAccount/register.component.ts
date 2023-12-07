@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
     });
@@ -46,6 +47,9 @@ export class RegisterComponent implements OnInit {
     login: 'Login',
     username: 'Username',
     usernameRequired: 'Username is required',
+    email: 'Email',
+    emailRequired: 'Email is required',
+    emailFormat: 'Email must match the format user@example.com',
     password: 'Password',
     passwordRequired: 'Password is required',
     confirmPassword: 'Confirm your password',
@@ -104,6 +108,7 @@ export class RegisterComponent implements OnInit {
     // Construct FormData and register user
     const formData = new FormData();
     formData.append('username', this.f.username.value);
+    formData.append('email', this.f.email.value);
     formData.append('password', this.hashedPassword);
 
     this.loading = true;

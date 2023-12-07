@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('closebutton') closebutton: any;
   translate: boolean;
   translatedContentFr: any = {};
+  userInfo: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -112,12 +113,17 @@ export class HomeComponent implements OnInit {
   }
 
   uploadImage(formData: FormData) {
+    this.alertService.info('Uploading image...');
     this.imageService.addImage(formData).subscribe({
       next: () => {
         this.alertService.success('Image uploaded', {
           keepAfterRouteChange: true,
           autoClose: true,
         });
+        const response = this.imageService.notifyUser(
+          this.userDetails.email,
+          this.userDetails.user
+        );
         window.scrollTo({ top: 0, behavior: 'smooth' });
         this.router.navigate(['/feed']);
       },

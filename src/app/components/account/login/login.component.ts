@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
       password: ['', Validators.required],
     });
     this.translationService
@@ -43,6 +44,9 @@ export class LoginComponent implements OnInit {
     login: 'Login',
     username: 'Username',
     usernameRequired: 'Username is required',
+    email: 'Email',
+    emailRequired: 'Email is required',
+    emailFormat: 'Email must match the format user@example.com',
     password: 'Password',
     passwordRequired: 'Password is required',
     register: 'Register',
@@ -84,6 +88,7 @@ export class LoginComponent implements OnInit {
     const userDetailsForm = {
       username: this.f.username.value,
       password: this.f.password.value,
+      email: this.f.email.value,
     };
     this.accountService.login(userDetailsForm).subscribe({
       next: () => {

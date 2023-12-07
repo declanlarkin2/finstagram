@@ -27,9 +27,11 @@ export class AccountService {
   login(userDetails: any): Observable<string> {
     const username = userDetails.username;
     const password = userDetails.password;
+    const email = userDetails.email;
 
     const userDetailsForm = new FormData();
     userDetailsForm.append('username', username);
+    userDetailsForm.append('email', email);
 
     return this.http
       .post<any>(
@@ -52,6 +54,7 @@ export class AccountService {
                 {
                   user_id: String(storedUserDetails[0].id),
                   user: username,
+                  email: email,
                   exp: expirationDate.getTime() / 1000,
                 },
                 'SECRET_KEY'
