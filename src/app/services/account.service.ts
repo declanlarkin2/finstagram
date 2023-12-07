@@ -86,4 +86,11 @@ export class AccountService {
       userDetails
     );
   };
+
+  updateUserDetails(userDetails: any) {
+    return this.http.put(
+      'https://prod-21.uksouth.logic.azure.com:443/workflows/ab3a992e578641a09340b589d3385bc1/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=CBeui2J_xlruxsa0DcKCPW5_hH5DBNAZR4GOb0f-TI4',
+      userDetails
+    );
+  }
 }

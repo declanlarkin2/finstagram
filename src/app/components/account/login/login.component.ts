@@ -93,7 +93,7 @@ export class LoginComponent implements OnInit {
       error: async (error: any) => {
         if (this.translate) {
           error = await this.translationService.translateText(error);
-          console.log(error);
+          error = error.replace(/^"(.*)"$/, '$1');
         }
         this.alertService.error(error);
         this.loading = false;

@@ -1,0 +1,100 @@
+<h1 class="text-center">
+  {{ translate ? translatedContentFr.title : "Edit Your Details" }}
+</h1>
+<br />
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="pokemon-form">
+  <div class="row">
+    <div class="mb-3 col">
+      <label class="form-label">{{
+        translate ? translatedContentFr.username : "Username"
+      }}</label>
+      <input
+        type="text"
+        formControlName="username"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+      />
+      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+        <div *ngIf="f.username.errors.required">
+          {{
+            translate
+              ? translatedContentFr.usernameRequired
+              : "Username is required"
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mb-3 col">
+      <label class="form-label">
+        {{ translate ? translatedContentFr.password : "Password" }}
+        <div *ngIf="translate"><br /></div>
+      </label>
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+      />
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">
+          {{
+            translate
+              ? translatedContentFr.passwordRequired
+              : "Password is required"
+          }}
+        </div>
+        <div *ngIf="f.password.errors.minlength">
+          {{
+            translate
+              ? translatedContentFr.passwordLength
+              : "Password must be at least 6 characters"
+          }}
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 col">
+      <label class="form-label">{{
+        translate ? translatedContentFr.confirmPassword : "Confirm Password"
+      }}</label>
+      <input
+        type="password"
+        formControlName="confirmPassword"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+      />
+      <div
+        *ngIf="submitted && f.confirmPassword.errors"
+        class="invalid-feedback"
+      >
+        <div *ngIf="f.confirmPassword.errors.required">
+          {{
+            translate
+              ? translatedContentFr.passwordRequired
+              : "Password is required"
+          }}
+        </div>
+        <div *ngIf="f.confirmPassword.errors.minlength">
+          {{
+            translate
+              ? translatedContentFr.passwordLength
+              : "Password must be at least 6 characters"
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <button [disabled]="submitting" class="btn btn-primary">
+      <span
+        *ngIf="submitting"
+        class="spinner-border spinner-border-sm me-1"
+      ></span>
+      {{ translate ? translatedContentFr.save : "Save" }}
+    </button>
+    <a routerLink="/" class="btn btn-link">{{
+      translate ? translatedContentFr.cancel : "Cancel"
+    }}</a>
+  </div>
+</form>
