@@ -17,4 +17,20 @@ export class ImageService {
       formData
     );
   }
+
+  notifyUser(to: string, username: string) {
+    return this.http
+      .post(
+        'https://prod-02.uksouth.logic.azure.com:443/workflows/bd66504c11da435381fc41db392f7593/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ql86AY8FfHhGyXadPvV1-WJ4M5KAhFcInEF1zGJhMMI',
+        { to, username }
+      )
+      .subscribe(
+        (response) => {
+          return response;
+        },
+        (error) => {
+          return error;
+        }
+      );
+  }
 }
