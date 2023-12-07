@@ -120,7 +120,7 @@ export class HomeComponent implements OnInit {
           keepAfterRouteChange: true,
           autoClose: true,
         });
-        const response = this.imageService.notifyUser(
+        this.imageService.notifyUser(
           this.userDetails.email,
           this.userDetails.user
         );
