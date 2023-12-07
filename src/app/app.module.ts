@@ -6,7 +6,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorInterceptor } from './helpers/error.interceptor';
@@ -23,7 +22,6 @@ import { HomeComponent } from './components/home/home.component';
     AppRoutingModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-    MdbRippleModule,
     CommonModule,
   ],
   declarations: [AppComponent, AlertComponent, HomeComponent],
