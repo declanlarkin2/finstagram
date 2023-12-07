@@ -5,6 +5,7 @@ import * as bcrypt from 'bcryptjs';
 
 import { AlertService } from '../../../services/alert.service';
 import { AccountService } from '../../..//services/account.service';
+import { TranslationService } from '../../../services/translation.service';
 
 @Component({
   templateUrl: 'register.component.html',
@@ -15,13 +16,16 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
   hashedPassword: string;
+  translate: boolean;
+  translatedContentFr: any = {};
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private translationService: TranslationService
   ) {}
 
   ngOnInit() {
@@ -30,6 +34,43 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
     });
+    this.translationService
+      .getTranslationObservable()
+      .subscribe(async (state) => {
+        this.translate = state;
+        this.translatedContentFr = await this.translatedContentMaker();
+      });
+  }
+
+  translatedContent: any = {
+    login: 'Login',
+    username: 'Username',
+    usernameRequired: 'Username is required',
+    password: 'Password',
+    passwordRequired: 'Password is required',
+    confirmPassword: 'Confirm your password',
+    pleaseConfirmPassword: 'Please confirm your password',
+    register: 'Register',
+    passwordLength: 'Password must be at least 6 characters',
+    cancel: 'Cancel',
+  };
+
+  async translatedContentMaker() {
+    const translated: { [key: string]: string } = {};
+
+    for (const key in this.translatedContent) {
+      if (Object.prototype.hasOwnProperty.call(this.translatedContent, key)) {
+        const value = this.translatedContent[key];
+        const translatedValue = this.translate
+          ? await this.translationService.translateText(value)
+          : value;
+
+        // Remove surrounding quotes from translatedValue, if present
+        translated[key] = translatedValue.replace(/^"(.*)"$/, '$1');
+      }
+    }
+
+    return translated;
   }
 
   // convenience getter for easy access to form fields

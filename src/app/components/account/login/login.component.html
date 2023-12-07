@@ -1,9 +1,13 @@
 <div class="pokemon-login-card">
-  <h4 class="pokemon-login-header">Login</h4>
+  <h4 class="pokemon-login-header">
+    {{ translate ? translatedContentFr.login : "Login" }}
+  </h4>
   <div class="pokemon-login-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="mb-3">
-        <label class="form-label">Username</label>
+        <label class="form-label">{{
+          translate ? translatedContentFr.username : "Username"
+        }}</label>
         <input
           type="text"
           formControlName="username"
@@ -11,11 +15,19 @@
           [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
         />
         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-          <div *ngIf="f.username.errors.required">Username is required</div>
+          <div *ngIf="f.username.errors.required">
+            {{
+              translate
+                ? translatedContentFr.usernameRequired
+                : "Username is required"
+            }}
+          </div>
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Password</label>
+        <label class="form-label">{{
+          translate ? translatedContentFr.password : "Password"
+        }}</label>
         <input
           type="password"
           formControlName="password"
@@ -23,7 +35,13 @@
           [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
         />
         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-          <div *ngIf="f.password.errors.required">Password is required</div>
+          <div *ngIf="f.password.errors.required">
+            {{
+              translate
+                ? translatedContentFr.passwordRequired
+                : "Password is required"
+            }}
+          </div>
         </div>
       </div>
       <div>
@@ -32,9 +50,11 @@
             *ngIf="loading"
             class="spinner-border spinner-border-sm me-1"
           ></span>
-          Login
+          {{ translate ? translatedContentFr.login : "Login" }}
         </button>
-        <a routerLink="../register" class="btn btn-link">Register</a>
+        <a routerLink="../register" class="btn btn-link">
+          {{ translate ? translatedContentFr.register : "register" }}</a
+        >
       </div>
     </form>
   </div>
