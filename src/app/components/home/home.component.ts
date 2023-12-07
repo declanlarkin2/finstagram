@@ -43,6 +43,8 @@ export class HomeComponent implements OnInit {
     welcome: 'Welcome to Finstagram',
     place:
       "The place where you can share moments with your friends. Add captions, share photos, and explore your friends' feeds.",
+    translateHint:
+      'Finstagram has launched in both the UK and in France! To switch your laugage just click the translate button at the top of your screen!',
     postPhotos: 'Post your photos!',
     shareImage: 'Share Your Image',
     selectImage: 'Select Image:',

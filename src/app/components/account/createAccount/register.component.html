@@ -1,9 +1,13 @@
 <div class="pokemon-card">
-  <h4 class="pokemon-card-header">Register</h4>
+  <h4 class="pokemon-card-header">
+    {{ translate ? translatedContentFr.register : "Register" }}
+  </h4>
   <div class="pokemon-card-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="mb-3">
-        <label class="form-label">Username</label>
+        <label class="form-label">{{
+          translate ? translatedContentFr.username : "Username"
+        }}</label>
         <input
           type="text"
           formControlName="username"
@@ -11,11 +15,19 @@
           [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
         />
         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-          <div *ngIf="f.username.errors.required">Username is required</div>
+          <div *ngIf="f.username.errors.required">
+            {{
+              translate
+                ? translatedContentFr.usernameRequired
+                : "Username is required"
+            }}
+          </div>
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Password</label>
+        <label class="form-label">{{
+          translate ? translatedContentFr.password : "Password"
+        }}</label>
         <input
           type="password"
           formControlName="password"
@@ -23,14 +35,28 @@
           [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
         />
         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-          <div *ngIf="f.password.errors.required">Password is required</div>
+          <div *ngIf="f.password.errors.required">
+            {{
+              translate
+                ? translatedContentFr.passwordRequired
+                : "Password is required"
+            }}
+          </div>
           <div *ngIf="f.password.errors.minlength">
-            Password must be at least 6 characters
+            {{
+              translate
+                ? translatedContentFr.passwordLength
+                : "Password must be at least 6 characters"
+            }}
           </div>
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Confirm Password</label>
+        <label class="form-label">
+          {{
+            translate ? translatedContentFr.confirmPassword : "Confirm Password"
+          }}</label
+        >
         <input
           type="password"
           formControlName="confirmPassword"
@@ -39,10 +65,18 @@
         />
         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
           <div *ngIf="f.password.errors.required">
-            Please confirm your password
+            {{
+              translate
+                ? translatedContentFr.pleaseConfirmPassword
+                : "Please confirm your password"
+            }}
           </div>
           <div *ngIf="f.password.errors.minlength">
-            Password must be at least 6 characters
+            {{
+              translate
+                ? translatedContentFr.passwordLength
+                : "Password must be at least 6 characters"
+            }}
           </div>
         </div>
       </div>
@@ -52,9 +86,11 @@
             *ngIf="loading"
             class="spinner-border spinner-border-sm me-1"
           ></span>
-          Register
+          {{ translate ? translatedContentFr.register : "Register" }}
         </button>
-        <a routerLink="../login" class="btn btn-link">Cancel</a>
+        <a routerLink="../login" class="btn btn-link">
+          {{ translate ? translatedContentFr.cancel : "Cancel" }}</a
+        >
       </div>
     </form>
   </div>
