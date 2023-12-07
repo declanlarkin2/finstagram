@@ -8,8 +8,12 @@ const feedModule = () =>
   import('./components/feed/feed.module').then((x) => x.FeedModule);
 const accountModule = () =>
   import('./components/account/account.module').then((x) => x.AccountModule);
+const usersModule = () =>
+  import('./components/users/users.module').then((x) => x.UsersModule);
+
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'edit', loadChildren: usersModule, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },
   { path: 'feed', loadChildren: feedModule, canActivate: [AuthGuard] },
 

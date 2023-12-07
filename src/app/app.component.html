@@ -21,6 +21,11 @@
           {{ translate ? "Traduire en anglais" : "Translate to French" }}
         </button>
       </li>
+      <li *ngIf="user" class="nav-item">
+        <a class="nav-link" routerLink="/edit" routerLinkActive="active">
+          {{ translate ? "Modifier vos coordonnées" : "Edit your details" }}
+        </a>
+      </li>
     </ul>
   </div>
 
