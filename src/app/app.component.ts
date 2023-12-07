@@ -11,7 +11,7 @@ import { User } from './models/user';
 })
 export class AppComponent {
   user?: User | null;
-  language: string = 'French';
+  translate: boolean;
 
   constructor(
     private accountService: AccountService,
@@ -20,11 +20,10 @@ export class AppComponent {
     this.accountService.user.subscribe((x) => (this.user = x));
   }
 
-  translate(): void {
+  translateState(): void {
     const buttonState = this.translationService.getButtonState();
     this.translationService.setButtonState(!buttonState);
-    this.language = buttonState ? 'French' : 'English';
-    console.log('state after click', buttonState);
+    buttonState ? (this.translate = false) : (this.translate = true);
   }
 
   logout() {

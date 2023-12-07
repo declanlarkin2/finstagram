@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../../services/image.service';
 import { TranslationService } from '../../services/translation.service';
 
@@ -7,7 +7,7 @@ import { TranslationService } from '../../services/translation.service';
   styleUrls: ['./feed.component.css'],
 })
 export class FeedComponent implements OnInit {
-  @Input() user_posts: any = [];
+  user_posts: any = [];
   translate: boolean;
   user_posts_french: any = [];
 
@@ -21,20 +21,26 @@ export class FeedComponent implements OnInit {
   async translatePostsToFrench(posts: any[]) {
     const translatedPosts = [];
 
-    const maxLength = Math.min(posts.length, this.user_posts.length); // Get the minimum length
+    const maxLength = Math.min(posts.length, this.user_posts.length);
 
     for (let i = 0; i < maxLength; i++) {
       const post = posts[i];
 
+      const translatedCaption = this.translate
+        ? await this.translationService.translateText(post.caption)
+        : post.caption;
+
+      const sanitizedCaption = translatedCaption.replace(/^"(.*)"$/, '$1');
+
       const translatedPost = {
         ...post,
-        caption: this.translate
-          ? await this.translationService.translateText(post.caption)
-          : post.caption,
+        caption: sanitizedCaption,
         date: post.date,
       };
+
       translatedPosts.push(translatedPost);
     }
+
     return translatedPosts;
   }
 

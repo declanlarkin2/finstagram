@@ -10,12 +10,10 @@ export class TranslationService {
   private translateToFrench = new BehaviorSubject<boolean>(false);
 
   getButtonState(): boolean {
-    console.log('state got');
     return this.translateToFrench.getValue();
   }
 
   setButtonState(state: boolean): void {
-    console.log('state set');
     this.translateToFrench.next(state);
   }
 
@@ -24,7 +22,7 @@ export class TranslationService {
   }
 
   async translateText(text: string): Promise<string> {
-    const key = process.env.TRANSLATION_KEY
+    const key = process.env.TRANSLATION_KEY;
     const endpoint = 'https://api.cognitive.microsofttranslator.com';
     const location = 'uksouth';
 
@@ -53,12 +51,8 @@ export class TranslationService {
 
     try {
       const response = await axios(config);
-      console.log(
-        JSON.stringify(response.data[0]?.translations[0].text, null, 4)
-      );
       return JSON.stringify(response.data[0]?.translations[0].text, null, 4);
     } catch (error) {
-      console.log('e', error);
       console.error('Translation error:', error);
       return 'error'; // Handle error here or throw an exception
     }

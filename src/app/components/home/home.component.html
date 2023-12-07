@@ -1,8 +1,13 @@
 <div class="container">
-  <h1 class="header-text">Welcome to Finstagram</h1>
+  <h1 class="header-text">
+    {{ translate ? translatedContentFr.welcome : "Welcome to Finstagram" }}
+  </h1>
   <p class="intro-text">
-    The place where you can share moments with your friends<br />
-    Add captions, share photos, and explore your friends' feeds.
+    {{
+      translate
+        ? translatedContentFr.place
+        : "The place where you can share moments with your friends. Add captions, share photos, and explore your friends' feeds."
+    }}
   </p>
   <button
     type="button"
@@ -10,7 +15,7 @@
     data-bs-toggle="modal"
     data-bs-target="#uploadModal"
   >
-    Post your photos!
+    {{ translate ? translatedContentFr.postPhotos : "Post your photos!" }}
   </button>
 
   <!-- Modal -->
@@ -24,7 +29,11 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="uploadModalLabel">Share Your Image</h5>
+          <h5 class="modal-title" id="uploadModalLabel">
+            {{
+              translate ? translatedContentFr.shareImage : "Share Your Image"
+            }}
+          </h5>
           <button
             type="button"
             class="btn-close"
@@ -37,8 +46,9 @@
           <!-- Your form content here -->
           <form [formGroup]="imageForm" (ngSubmit)="onSubmit()">
             <div class="mb-4">
-              <label for="imageUpload" class="form-label text-primary"
-                >Select Image:</label
+              <label for="imageUpload" class="form-label text-primary">{{
+                translate ? translatedContentFr.selectImage : "Select Image"
+              }}</label>
               >
               <div class="custom-file">
                 <input
@@ -60,16 +70,20 @@
               </div>
             </div>
             <div class="mb-4">
-              <label for="caption" class="form-label text-primary"
-                >Caption:</label
-              >
+              <label for="caption" class="form-label text-primary">{{
+                translate ? translatedContentFr.captionLabel : "Caption"
+              }}</label>
               <textarea
                 class="form-control"
                 id="caption"
                 name="caption"
                 formControlName="caption"
                 rows="3"
-                placeholder="Add a caption..."
+                [placeholder]="
+                  translate
+                    ? translatedContentFr.captionPlaceholder
+                    : 'Add a caption...'
+                "
               ></textarea>
             </div>
             <button
@@ -77,7 +91,9 @@
               class="btn btn-primary btn-block"
               [disabled]="imageForm.invalid"
             >
-              Upload Image
+              {{
+                translate ? translatedContentFr.uploadButton : "Upload Image"
+              }}
             </button>
           </form>
         </div>
@@ -87,7 +103,6 @@
 </div>
 <img
   class="finsta-image"
-  src="https://img.freepik.com/free-photo/group-friends-laughing-phone_23-2148422442.jpg?w=1380&t=st=1701901680~exp=1701902280~hmac=24a033dddb51c2243bcad871032af0c6afef92ea4ca2f0717f27f7a1607ef4b7"
+  src="https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   alt="Finstagram Example Image"
 />
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
