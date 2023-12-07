@@ -22,6 +22,9 @@
       </li>
     </ul>
   </div>
+  <button class="nav-link navbar-btn" (click)="translate()">
+    Translate to {{ language }}
+  </button>
   <button *ngIf="user" class="nav-link navbar-btn" (click)="logout()">
     Logout
   </button>
