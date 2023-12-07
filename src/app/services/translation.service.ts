@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import axios, { AxiosRequestConfig } from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,7 @@ export class TranslationService {
   }
 
   async translateText(text: string): Promise<string> {
-    const key = process.env.TRANSLATION_KEY;
+    const key = environment.translationKey;
     const endpoint = 'https://api.cognitive.microsofttranslator.com';
     const location = 'uksouth';
 
