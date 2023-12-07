@@ -111,6 +111,7 @@ export class EditComponent implements OnInit {
     formData.append('id', this.userDetails.user_id);
     formData.append('username', this.form.get('username')!.value);
     formData.append('password', this.hashedPassword);
+    formData.append('email', this.userDetails.email);
     this.updateUser(formData);
   }
 
