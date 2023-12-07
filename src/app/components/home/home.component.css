@@ -39,7 +39,7 @@ body {
 .finsta-image {
   display: block;
   margin: 0 auto;
-  max-width: auto; /* Adjust as needed */
+  max-width: 70%; /* Adjust as needed */
   max-height: 70%;
   margin-top: 20px;
 }

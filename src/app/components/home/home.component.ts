@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ImageService } from 'src/app/services/image.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { decode } from 'jsonwebtoken';
 import { Router } from '@angular/router';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   templateUrl: './home.component.html',
@@ -15,12 +15,15 @@ export class HomeComponent implements OnInit {
   previewUrl: string | ArrayBuffer | null = null;
   userDetails: any;
   @ViewChild('closebutton') closebutton: any;
+  translate: boolean;
+  translatedContentFr: any = {};
 
   constructor(
     private formBuilder: FormBuilder,
     private imageService: ImageService,
     private alertService: AlertService,
-    private router: Router
+    private router: Router,
+    private translationService: TranslationService
   ) {}
 
   ngOnInit() {
@@ -28,6 +31,42 @@ export class HomeComponent implements OnInit {
       File: [null, Validators.required],
       caption: ['', Validators.required],
     });
+    this.translationService
+      .getTranslationObservable()
+      .subscribe(async (state) => {
+        this.translate = state;
+        this.translatedContentFr = await this.translatedContentMaker();
+      });
+  }
+
+  translatedContent: any = {
+    welcome: 'Welcome to Finstagram',
+    place:
+      "The place where you can share moments with your friends. Add captions, share photos, and explore your friends' feeds.",
+    postPhotos: 'Post your photos!',
+    shareImage: 'Share Your Image',
+    selectImage: 'Select Image:',
+    captionLabel: 'Caption:',
+    captionPlaceholder: 'Add a caption...',
+    uploadButton: 'Upload Image',
+  };
+
+  async translatedContentMaker() {
+    const translated: { [key: string]: string } = {};
+
+    for (const key in this.translatedContent) {
+      if (Object.prototype.hasOwnProperty.call(this.translatedContent, key)) {
+        const value = this.translatedContent[key];
+        const translatedValue = this.translate
+          ? await this.translationService.translateText(value)
+          : value;
+
+        // Remove surrounding quotes from translatedValue, if present
+        translated[key] = translatedValue.replace(/^"(.*)"$/, '$1');
+      }
+    }
+
+    return translated;
   }
 
   previewImage(event: any) {
